@@ -14,7 +14,7 @@ import json
 class OrchestratorView(View):
     def get(self, request):
         parameters = request.GET
-        response = requests.get(f"http://{settings.MYDB_HOST}:{settings.SERVICE_BUSINESS_LOGIC_PORT}/{settings.SERVICE_BUSINESS_LOGIC}/search", parameters)
+        response = requests.get(f"http://{settings.SERVICE_BUSINESS_LOGIC_HOST}:{settings.SERVICE_BUSINESS_LOGIC_PORT}/{settings.SERVICE_BUSINESS_LOGIC}/search", parameters)
         return JsonResponse(response.json(), safe=False)
 
     def post(self, request):
@@ -37,7 +37,7 @@ class OrchestratorView(View):
         print(parameters)
         if parameters['intentName'] == 'search':
             print('choreogr search')
-            response = requests.get(f"http://{settings.MYDB_HOST}:{settings.SERVICE_PROCESS_CENTRIC_PORT}/{settings.SERVICE_PROCESS_CENTRIC}/searches", parameters)
+            response = requests.get(f"http://{settings.SERVICE_PROCESS_CENTRIC_HOST}:{settings.SERVICE_PROCESS_CENTRIC_PORT}/{settings.SERVICE_PROCESS_CENTRIC}/searches", parameters)
         elif parameters['intentName'] == 'save':
 
             context = json_request['queryResult']['outputContexts'][0]['parameters']
