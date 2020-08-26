@@ -39,7 +39,6 @@ class OrchestratorView(View):
             print('choreogr search')
             response = requests.get(f"http://{settings.SERVICE_PROCESS_CENTRIC_HOST}:{settings.SERVICE_PROCESS_CENTRIC_PORT}/{settings.SERVICE_PROCESS_CENTRIC}/searches", parameters)
         elif parameters['intentName'] == 'save':
-
             context = json_request['queryResult']['outputContexts'][0]['parameters']
             save_parameters = {
                 "context": context,
