@@ -37,7 +37,7 @@ class OrchestratorView(View):
         print(parameters)
         if parameters['intentName'] == 'search':
             print('choreogr search')
-            response = requests.get(f"http://{settings.MYDB_HOST}:{settings.SERVICE_PROCESS_CENTRIC_PORT}/{settings.SERVICE_PROCESS_CENTRIC}/searches", parameters)
+            response = requests.get(f"http://{settings.SERVICE_PROCESS_CENTRIC_HOST}:{settings.SERVICE_PROCESS_CENTRIC_PORT}/{settings.SERVICE_PROCESS_CENTRIC}/searches", parameters)
         elif parameters['intentName'] == 'save':
 
             context = json_request['queryResult']['outputContexts'][0]['parameters']
@@ -45,12 +45,12 @@ class OrchestratorView(View):
                 "context": context,
                 "request_parameters": parameters
             }
-            response = requests.post(f"http://{settings.MYDB_HOST}:{settings.SERVICE_PROCESS_CENTRIC_DB_PORT}/{settings.SERVICE_PROCESS_CENTRIC_DB}/save/", None, save_parameters)
+            response = requests.post(f"http://{settings.SERVICE_PROCESS_CENTRIC_DB_HOST}:{settings.SERVICE_PROCESS_CENTRIC_DB_PORT}/{settings.SERVICE_PROCESS_CENTRIC_DB}/save/", None, save_parameters)
         elif parameters['intentName'] == 'retrieve':
             response = requests.get(
-                f"http://{settings.MYDB_HOST}:{settings.SERVICE_PROCESS_CENTRIC_DB_PORT}/{settings.SERVICE_PROCESS_CENTRIC_DB}/retrieve/", parameters)
+                f"http://{settings.SERVICE_PROCESS_CENTRIC_DB_HOST}:{settings.SERVICE_PROCESS_CENTRIC_DB_PORT}/{settings.SERVICE_PROCESS_CENTRIC_DB}/retrieve/", parameters)
         elif parameters['intentName'] == 'delete':
-            response = requests.post(f"http://{settings.MYDB_HOST}:{settings.SERVICE_PROCESS_CENTRIC_DB_PORT}/{settings.SERVICE_PROCESS_CENTRIC_DB}/delete/", None, parameters)
+            response = requests.post(f"http://{settings.SERVICE_PROCESS_CENTRIC_DB_HOST}:{settings.SERVICE_PROCESS_CENTRIC_DB_PORT}/{settings.SERVICE_PROCESS_CENTRIC_DB}/delete/", None, parameters)
         else:
             print('Sorry, I cannot manage your request.')
         return JsonResponse(response.json(), safe=False)
