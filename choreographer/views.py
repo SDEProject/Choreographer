@@ -24,7 +24,7 @@ class OrchestratorView(View):
         # print(json_request['queryResult']['parameters'])
         parameters = json_request['queryResult']['parameters']
         parameters['intentName'] = json_request['queryResult']['intent']['displayName']
-        parameters['user_id'] = json_request['originalDetectIntentRequest']['payload']['data']['chat']['from']['id']
+        parameters['user_id'] = json_request['originalDetectIntentRequest']['payload']['data']['from']['id']
         response = {
                     "fulfillmentMessages": [
                         {
