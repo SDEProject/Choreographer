@@ -20,7 +20,7 @@ class OrchestratorView(View):
     def post(self, request):
         body = request.body.decode('utf-8')
         json_request = json.loads(body)
-        print(json_request)
+        print(f"REQUEST: {json_request}")
         # print(json_request['queryResult']['parameters'])
         parameters = json_request['queryResult']['parameters']
         parameters['intentName'] = json_request['queryResult']['intent']['displayName']
@@ -35,7 +35,7 @@ class OrchestratorView(View):
                       ]
                     }
 
-        print(parameters)
+        print(f"PARAMETERS: {parameters}")
         if parameters['intentName'] == 'search':
             print('choreogr search')
             response = requests.get(f"http://{settings.SERVICE_PROCESS_CENTRIC_HOST}:{settings.SERVICE_PROCESS_CENTRIC_PORT}/{settings.SERVICE_PROCESS_CENTRIC}/searches", parameters)
