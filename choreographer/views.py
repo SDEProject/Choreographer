@@ -53,5 +53,5 @@ class OrchestratorView(View):
             response = requests.post(f"http://{settings.SERVICE_PROCESS_CENTRIC_DB_HOST}:{settings.SERVICE_PROCESS_CENTRIC_DB_PORT}/{settings.SERVICE_PROCESS_CENTRIC_DB}/delete/", None, parameters)
         else:
             print('Sorry, I cannot manage your request.')
-        print(f"RESPONSE: {response}")
+        print(f"RESPONSE: {response.content}")
         return JsonResponse(response.json(), safe=False, status=200)
